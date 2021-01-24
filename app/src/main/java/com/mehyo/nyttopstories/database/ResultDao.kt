@@ -21,5 +21,4 @@ interface ResultDao {
     //Read All the Result objects from Database
     @Query("Select * from result_table ORDER BY id ASC")
     fun readAllData(): LiveData<List<Result>>
-
 }
