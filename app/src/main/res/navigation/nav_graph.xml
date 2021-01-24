@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/viewPager2Fragment">
+
+    <fragment
+        android:id="@+id/viewPager2Fragment"
+        android:name="com.mehyo.nyttopstories.ui.fragments.ViewPagerFragment"
+        android:label="New York Times Top Stories"
+        tools:layout="@layout/fragment_view_pager" >
+        <action
+            android:id="@+id/action_viewPager2Fragment_to_detailsAbsFragment"
+            app:destination="@id/detailsAbsFragment" />
+        <action
+            android:id="@+id/action_viewPager2Fragment_to_detailsAbsBookmarkFragment"
+            app:destination="@id/detailsAbsBookmarkFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsAbsFragment"
+        android:name="com.mehyo.nyttopstories.ui.fragments.DetailsAbsFragment"
+        android:label="Article Abstract"
+        tools:layout="@layout/fragment_details_abs" >
+        <argument
+            android:name="currentResult"
+            app:argType="com.mehyo.nyttopstories.Results" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsAbsBookmarkFragment"
+        android:name="com.mehyo.nyttopstories.ui.fragments.DetailsAbsBookmarkFragment"
+        android:label="Bookmarked Article Abstract"
+        tools:layout="@layout/fragment_details_abs_bookmark" >
+        <argument
+            android:name="currentResult2"
+            app:argType="com.mehyo.nyttopstories.model.Result" />
+        <action
+            android:id="@+id/action_detailsAbsBookmarkFragment_to_viewPager2Fragment"
+            app:destination="@id/viewPager2Fragment"
+            app:popUpTo="@id/viewPager2Fragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>
