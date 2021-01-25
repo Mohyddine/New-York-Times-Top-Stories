@@ -1,6 +1,7 @@
 package com.mehyo.nyttopstories.ui.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
@@ -27,14 +28,14 @@ class BookmarksGridAdapter(): RecyclerView.Adapter<BookmarksGridAdapter.GridView
         val imageView=binding.imageView
 
         //binding data to views
-        fun bind(data: Result){
+        fun bind(data: Result,itemView: View){
             tvTitle.text=data.title
             tvTime.text=data.published_date
             imageView.load(data.multimedia_small){
                 crossfade(true)
                 placeholder(R.drawable.ic_image)
             }
-            tvTitle.setOnClickListener {
+            itemView.setOnClickListener {
                 val action:NavDirections= ViewPagerFragmentDirections
                         .actionViewPager2FragmentToDetailsAbsBookmarkFragment(data)
                 it.findNavController().navigate(action)
@@ -50,7 +51,7 @@ class BookmarksGridAdapter(): RecyclerView.Adapter<BookmarksGridAdapter.GridView
 
     //binding data to views in specific position
     override fun onBindViewHolder(holder: GridViewHolder, position: Int) {
-        holder.bind(topStoriesGrid[position])
+        holder.bind(topStoriesGrid[position],holder.itemView)
     }
 
     //list size to get recyclerview size
