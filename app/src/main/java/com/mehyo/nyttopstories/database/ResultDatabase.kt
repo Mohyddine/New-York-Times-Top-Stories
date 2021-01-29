@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.mehyo.nyttopstories.model.Result
 
-@Database( entities= [Result::class],version = 1,exportSchema = false)
+@Database( entities= [Result::class],version = 2,exportSchema = false)
 abstract class ResultDatabase: RoomDatabase() {
 
     abstract fun resultDao(): ResultDao
@@ -25,7 +25,7 @@ abstract class ResultDatabase: RoomDatabase() {
                     context.applicationContext,
                     ResultDatabase::class.java,
                     "result_database",
-                ).build()
+                ).fallbackToDestructiveMigration().build()
                 INSTANCE=instance
                 return instance
             }

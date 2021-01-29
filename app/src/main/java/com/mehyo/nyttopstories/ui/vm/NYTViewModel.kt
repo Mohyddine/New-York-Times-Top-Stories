@@ -3,6 +3,7 @@ package com.mehyo.nyttopstories.ui.vm
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.mehyo.nyttopstories.NYTModel
 import com.mehyo.nyttopstories.network.RetrofitBuilder
 import kotlinx.coroutines.Dispatchers
@@ -20,7 +21,7 @@ class NYTViewModel: ViewModel() {
     }
     //getting the network call response using coroutine and posting data to mutableLiveData
     fun getResults(){
-       GlobalScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.IO) {
            try {
                val response=RetrofitBuilder.apiService.
                apiGetTopStoresResult(RetrofitBuilder.API_Key)
